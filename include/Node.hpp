@@ -10,13 +10,15 @@ enum NodeType
 	FILE_TYPE
 };
 
-class NodeAttributes
+struct NodeAttributes
 {
-public:
 	NodeType type;
 	std::string name;
 	std::time_t created_at;
 	std::time_t updated_at;
+	NodeAttributes(NodeType t, std::string n): type(t), name(std::move(n)){
+		created_at = updated_at = std::time_t(0);
+	};
 };
 
 class NodeMethods
@@ -24,15 +26,14 @@ class NodeMethods
 public:
 	virtual const std::string& get_name() = 0;
 	virtual void print() const = 0; 
-	virtual ~NodeMethods();
+	virtual ~NodeMethods() = default;
 };
 
 class Node: public NodeMethods, public NodeAttributes
 {
-	virtual const std::string& get_name() = 0;
-	virtual void print() const = 0;
-	// virtual ~Node();
-
+public: 
+	Node(NodeType t, std::string n): NodeAttributes(t, n){};
+	~Node() override;
 };
 
 #endif
