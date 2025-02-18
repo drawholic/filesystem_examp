@@ -1,13 +1,14 @@
 #include "Node.hpp"
 #include <iostream>
 
-class File: private Node
+class File: public Node
 {
 
-public:
-	// File();
-	File(std::string);
-	~File();
+public: 
+	File(const std::string n = 0);
+	~File() override = default;
 	const std::string& get_name() override;
 	void print() const override;
+
+	void set_name(const std::string& new_name);
 };
