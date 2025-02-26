@@ -4,6 +4,7 @@
 class File: public Node
 {
 
+	void refresh_updated_date();
 public: 
 	File(const std::string n = 0);
 	~File() override = default;
