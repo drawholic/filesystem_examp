@@ -26,7 +26,12 @@ void File::set_name(const std::string& new_name)
 };
 void File::print() const
 {
-	std::cout << "File: " << name << "\ncreated at: " << std::ctime(&created_at) << "updated_at: "  << std::ctime(&updated_at);
+	std::string created(std::ctime(&created_at));
+	std::string updated(std::ctime(&updated_at));
+	
+	created.pop_back();
+
+	std::cout << get_name() << " | " << created << " | " << updated;
 };
 
 NodeType File::get_type() const
