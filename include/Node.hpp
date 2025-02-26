@@ -28,6 +28,7 @@ public:
 	virtual void print() const = 0; 
 	virtual ~NodeMethods() = default;
 	virtual void refresh_updated_date();
+	virtual NodeType get_type() const;
 };
 
 class Node: public NodeMethods, public NodeAttributes
