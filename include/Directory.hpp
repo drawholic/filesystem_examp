@@ -2,8 +2,10 @@
 #define DIRECTORY_HPP
 
 #include "Node.hpp"
+#include "File.hpp"
 #include <list>
 #include <iostream>
+#include <algorithm>
 
 class Directory: public Node
 {
@@ -21,7 +23,9 @@ public:
 
 	const std::string& get_name() const override;
 
-	void add_child();
+	void add_child(Node*);
+	void add_child(const std::string&, NodeType);
+
 
 	void remove_child(std::string);
 
