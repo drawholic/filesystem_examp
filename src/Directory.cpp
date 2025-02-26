@@ -14,9 +14,16 @@ const std::string& Directory::get_name() const
 
 void Directory::print() const
 {
-	std::cout << "Directory: " << get_name() << 
-	"\ncreated_at: " << std::ctime(&created_at) <<
-	"updated_at: " << std::ctime(&updated_at);
+	std::string created(std::ctime(&created_at));
+	created.pop_back();
+	std::string updated(std::ctime(&updated_at));
+
+	std::cout << get_name() << " | " << created << " | " << updated;
+	for(auto i : children)
+	{
+		i->print();
+	};
+ 
 };
 
 void Directory::refresh_updated_date() 
@@ -70,4 +77,54 @@ void Directory::add_child(Node* child)
 {
 	if(child)
 		children.push_back(child);
+};
+
+void Directory::remove_child(std::string n)
+{
+	auto it = children.begin();
+	auto pend = children.end();
+
+	it = std::find_if(it, pend, [&n](Node* el){
+		return el->get_name() == n;
+	});
+
+	if(it != pend)
+	{
+		children.erase(it);
+	};
+};
+
+void  Directory::remove_child(Node* el)
+{
+	if(el->get_type() == DIR_TYPE)
+	{
+		remove_directory(el);
+	}else
+	{
+		children.remove(el);		
+	}
+};
+
+void Directory::remove_children()
+{
+	for(auto i : children)
+	{
+		remove_child(i);
+	};
+};
+
+void Directory::remove_directory(Node* el)
+{
+	Directory* dir = dynamic_cast<Directory*>(el);
+	if(!dir->empty())
+	{ 
+		dir->remove_children();
+	};
+	delete dir;
+	children.remove(dir);
+};
+ 
+bool Directory::empty()
+{
+	return children.empty();
 };
