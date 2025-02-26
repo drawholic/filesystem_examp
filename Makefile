@@ -14,10 +14,8 @@ OBJS = ${BUILD_DIR}/Node.o ${BUILD_DIR}/Directory.o ${BUILD_DIR}/File.o
 
 all: ${BUILD_DIR}
 
-
 ${BUILD_DIR}: ${BUILD_DIR}/main
 	mkdir -p ${BUILD_DIR}
-
 
 ${BUILD_DIR}/main: ${SRC_DIR}/main.cpp ${OBJS}
 	${CXX} ${CXX_FLAGS} $^ -o $@
@@ -38,5 +36,3 @@ test: test1
 
 test1: ${TEST_DIR}/test1.cpp ${BUILD_DIR}/File.o ${BUILD_DIR}/Node.o
 	${CXX} ${CXX_FLAGS} $^ -o ${TEST_DIR}/$@
-
-
