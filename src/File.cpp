@@ -28,3 +28,8 @@ void File::print() const
 {
 	std::cout << "File: " << name << "\ncreated at: " << std::ctime(&created_at) << "updated_at: "  << std::ctime(&updated_at);
 };
+
+NodeType File::get_type() const
+{
+	return type;
+};
