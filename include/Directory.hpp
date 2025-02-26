@@ -31,12 +31,11 @@ public:
 	
 	void remove_children();
 
-	void print() const override;
+	void print(unsigned level = 0) const override;
 
 	void set_name(const std::string& new_name);
 
 	void remove_directory(Node*);
-
 
 	bool empty();
 };
