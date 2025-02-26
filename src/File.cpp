@@ -10,11 +10,19 @@ const std::string& File::get_name()
 {
 	return name;
 };
+
+
+void File::refresh_updated_date()
+{
+	updated_at = std::time(0);
+};
+
 void File::set_name(const std::string& new_name)
 {
 	name = std::move(new_name);
+
 };
 void File::print() const
 {
-	std::cout << "Name: " << name << ", created at: " << std::ctime(&created_at) << ", " << std::endl;
+	std::cout << "Name: " << name << ", created at: " << std::ctime(&created_at) << ", updated_at: "  << std::ctime(&updated_at) << std::endl;
 };
