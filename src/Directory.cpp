@@ -12,16 +12,25 @@ const std::string& Directory::get_name() const
 	return name;
 };
 
-void Directory::print() const
+void Directory::print(unsigned level) const
 {
 	std::string created(std::ctime(&created_at));
 	created.pop_back();
 	std::string updated(std::ctime(&updated_at));
 
+
+	for(unsigned i = 0; i < level; i++)
+	{
+		std::cout << "   ";
+	};
+	
+	std::cout << " - ";
+	
 	std::cout << get_name() << " | " << created << " | " << updated;
+
 	for(auto i : children)
 	{
-		i->print();
+		i->print(level+1);
 	};
  
 };
