@@ -16,7 +16,7 @@ public:
 
 	const std::string& get_name() const override;
 
-	void print() const override;
+	void print(unsigned level = 0) const override;
 
 	void set_name(const std::string& new_name);
 
