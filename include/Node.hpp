@@ -25,7 +25,7 @@ class NodeMethods
 {
 public:
 	virtual const std::string& get_name() const = 0;
-	virtual void print() const = 0; 
+	virtual void print(unsigned) const = 0; 
 	virtual ~NodeMethods() = default;
 	virtual void refresh_updated_date();
 	virtual NodeType get_type() const;
